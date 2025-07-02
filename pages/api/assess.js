@@ -28,7 +28,7 @@ Patient Info:
 - Heart Rate: ${data.hr} bpm
 - Respiratory Rate: ${data.rr} bpm
 - BP: ${data.bp}
-- Temperature: ${data.temp} °C
+- Temperature: ${data.temp} °F
 - O2 Sat: ${data.o2}%
 - GCS: ${data.gcs}
 - Onset: ${data.onset}
