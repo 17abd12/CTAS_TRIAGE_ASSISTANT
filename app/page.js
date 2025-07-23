@@ -38,157 +38,105 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-      {/* Left - Patient Info */}
- <div className="bg-gray-800 p-6 rounded-lg shadow">
-  <h2 className="text-2xl font-bold mb-4 text-teal-300 tracking-wide">Patient Information</h2>
-  <div className="space-y-4">
-    <input
-      name="chiefComplaint"
-      placeholder="e.g. Chest pain, shortness of breath"
-      className="w-full p-2 bg-gray-700 rounded"
-      onChange={handleChange}
-    />
+    <div className="min-h-screen bg-white text-black p-8 md:p-16 font-sans">
+      <h1 className="text-center text-4xl font-extrabold text-[#b21e2a] mb-12 tracking-wide drop-shadow">
+        🏥 Patient Triage Assessment
+      </h1>
 
-    <div className="flex gap-4">
-      <input
-        name="age"
-        type="number"
-        placeholder="Age (e.g. 45)"
-        min={0}
-        max={120}
-        className="w-1/2 p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      />
-      <select
-        name="sex"
-        className="w-1/2 p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      >
-        <option value="">Sex</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
-    </div>
+      <div className="grid md:grid-cols-2 gap-12">
+        {/* LEFT PANEL */}
+        <div className="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-[#b21e2a] hover:shadow-red-500/40 transition-shadow">
+          <h2 className="text-2xl font-bold mb-6 text-[#d4a14a] uppercase tracking-wide">
+            Patient Information
+          </h2>
+          <div className="space-y-4">
+            <input
+              name="chiefComplaint"
+              placeholder="Chief Complaint"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#b21e2a]"
+              onChange={handleChange}
+            />
 
-    <div className="grid grid-cols-2 gap-4">
-      <input
-        name="hr"
-        type="number"
-        placeholder="HR (e.g. 85 bpm)"
-        min={30}
-        max={200}
-        className="p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      />
-      <input
-        name="rr"
-        type="number"
-        placeholder="RR (e.g. 18 bpm)"
-        min={5}
-        max={60}
-        className="p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      />
-      <input
-        name="bp"
-        placeholder="BP (e.g. 120/80)"
-        className="p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      />
-      <input
-        name="temp"
-        type="number"
-        placeholder="Temp (°F) e.g. 98.6"
-        min={85}
-        max={110}
-        className="p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      />
-      <input
-        name="o2"
-        type="number"
-        placeholder="O₂ Sat (%) e.g. 96"
-        min={50}
-        max={100}
-        className="p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      />
-      <input
-        name="gcs"
-        type="number"
-        placeholder="GCS (e.g. 15)"
-        min={3}
-        max={15}
-        className="p-2 bg-gray-700 rounded"
-        onChange={handleChange}
-      />
-    </div>
-
-    <textarea
-      name="onset"
-      placeholder="e.g. Symptoms started 30 minutes ago while climbing stairs"
-      className="w-full p-2 bg-gray-700 rounded"
-      onChange={handleChange}
-    ></textarea>
-
-    <textarea
-      name="risk"
-      placeholder="e.g. Hypertension, Diabetes, Smoker"
-      className="w-full p-2 bg-gray-700 rounded"
-      onChange={handleChange}
-    ></textarea>
-
-    <select
-      name="arrival"
-      className="w-full p-2 bg-gray-700 rounded"
-      onChange={handleChange}
-    >
-      <option value="Walk-in">Walk-in</option>
-      <option value="EMS">EMS</option>
-    </select>
-
-    <button
-      className="w-full bg-teal-600 hover:bg-teal-500 p-3 rounded mt-4"
-      onClick={assessPatient}
-    >
-      {loading ? 'Assessing...' : 'Assess Patient'}
-    </button>
-  </div>
-</div>
-
-
-      {/* Right - Triage Result */}
-      <div className="bg-gray-900 p-8 rounded-2xl shadow-lg overflow-auto text-white transition-all duration-300">
-        <h2 className="text-3xl font-extrabold mb-6 text-blue-400 tracking-wide">Triage Assessment</h2>
-        {result ? (
-          result.error ? (
-            <p className="text-red-500 text-lg font-medium">{result.error}</p>
-          ) : (
-            <div className="space-y-5 text-lg leading-relaxed">
-              <p>
-                <span className="text-teal-400 font-semibold">CTAS Level:</span>{' '}
-                <span>{result.ctasLevel}</span>
-              </p>
-              <p>
-                <span className="text-teal-400 font-semibold">Description:</span>{' '}
-                <span>{result.description}</span>
-              </p>
-              <p>
-                <span className="text-teal-400 font-semibold">Justification:</span>{' '}
-                <span>{result.justification}</span>
-              </p>
-              <p>
-                <span className="text-teal-400 font-semibold">Life-saving Intervention Required:</span>{' '}
-                <span>{result.interventionRequired}</span>
-              </p>
+            <div className="flex gap-4">
+              <input
+                name="age"
+                type="number"
+                placeholder="Age"
+                className="w-1/2 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              />
+              <select
+                name="sex"
+                className="w-1/2 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              >
+                <option value="">Sex</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
             </div>
-          )
-        ) : (
-          <p className="text-gray-400 text-base tracking-wide">
-            Fill the form and press <span className="font-semibold text-blue-300">&quot;Assess Patient&quot;</span> to see results here.
-          </p>
-        )}
+
+            <div className="grid grid-cols-2 gap-4">
+              <input name="hr" type="number" placeholder="HR" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
+              <input name="rr" type="number" placeholder="RR" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
+              <input name="bp" placeholder="BP" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
+              <input name="temp" type="number" placeholder="Temp (°F)" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
+              <input name="o2" type="number" placeholder="O₂ Sat (%)" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
+              <input name="gcs" type="number" placeholder="GCS" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
+            </div>
+
+            <textarea
+              name="onset"
+              placeholder="Onset Details"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+              onChange={handleChange}
+            />
+            <textarea
+              name="risk"
+              placeholder="Risk Factors"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+              onChange={handleChange}
+            />
+            <select
+              name="arrival"
+              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+              onChange={handleChange}
+            >
+              <option value="Walk-in">Walk-in</option>
+              <option value="EMS">EMS</option>
+            </select>
+
+            <button
+              className="w-full bg-[#b21e2a] hover:bg-[#d8303f] p-3 rounded-lg font-bold mt-6 text-white transition-colors"
+              onClick={assessPatient}
+            >
+              {loading ? 'Assessing...' : 'Assess Patient'}
+            </button>
+          </div>
+        </div>
+
+        {/* RIGHT PANEL */}
+        <div className="bg-[#f9f9f9] p-8 rounded-2xl shadow-xl border-t-8 border-[#d4a14a] hover:shadow-yellow-500/40 transition-shadow">
+          <h2 className="text-3xl font-extrabold mb-6 text-[#b21e2a] uppercase tracking-wide">
+            Triage Assessment
+          </h2>
+          {result ? (
+            result.error ? (
+              <p className="text-red-600 text-lg font-semibold">{result.error}</p>
+            ) : (
+              <div className="space-y-4 text-lg leading-relaxed">
+                <p><span className="font-bold text-[#b21e2a]">CTAS Level:</span> {result.ctasLevel}</p>
+                <p><span className="font-bold text-[#b21e2a]">Description:</span> {result.description}</p>
+                <p><span className="font-bold text-[#b21e2a]">Justification:</span> {result.justification}</p>
+                <p><span className="font-bold text-[#b21e2a]">Life-saving Intervention Required:</span> {result.interventionRequired}</p>
+              </div>
+            )
+          ) : (
+            <p className="text-gray-600 text-base">
+              Fill the form and press <span className="font-semibold text-[#d4a14a]">"Assess Patient"</span> to see results here.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
