@@ -31,7 +31,9 @@ export default function Home() {
       const response = await axios.post('/api/assess', formData);
       setResult(response.data);
     } catch (error) {
-      setResult({ error: error.response?.data?.error || 'Unknown error occurred.' });
+      setResult({
+        error: error.response?.data?.error || 'Unknown error occurred.',
+      });
     } finally {
       setLoading(false);
     }
@@ -77,12 +79,47 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <input name="hr" type="number" placeholder="HR" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
-              <input name="rr" type="number" placeholder="RR" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
-              <input name="bp" placeholder="BP" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
-              <input name="temp" type="number" placeholder="Temp (°F)" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
-              <input name="o2" type="number" placeholder="O₂ Sat (%)" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
-              <input name="gcs" type="number" placeholder="GCS" className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]" onChange={handleChange}/>
+              <input
+                name="hr"
+                type="number"
+                placeholder="HR"
+                className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              />
+              <input
+                name="rr"
+                type="number"
+                placeholder="RR"
+                className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              />
+              <input
+                name="bp"
+                placeholder="BP"
+                className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              />
+              <input
+                name="temp"
+                type="number"
+                placeholder="Temp (°F)"
+                className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              />
+              <input
+                name="o2"
+                type="number"
+                placeholder="O₂ Sat (%)"
+                className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              />
+              <input
+                name="gcs"
+                type="number"
+                placeholder="GCS"
+                className="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#b21e2a]"
+                onChange={handleChange}
+              />
             </div>
 
             <textarea
@@ -125,15 +162,25 @@ export default function Home() {
               <p className="text-red-600 text-lg font-semibold">{result.error}</p>
             ) : (
               <div className="space-y-4 text-lg leading-relaxed">
-                <p><span className="font-bold text-[#b21e2a]">CTAS Level:</span> {result.ctasLevel}</p>
-                <p><span className="font-bold text-[#b21e2a]">Description:</span> {result.description}</p>
-                <p><span className="font-bold text-[#b21e2a]">Justification:</span> {result.justification}</p>
-                <p><span className="font-bold text-[#b21e2a]">Life-saving Intervention Required:</span> {result.interventionRequired}</p>
+                <p>
+                  <span className="font-bold text-[#b21e2a]">CTAS Level:</span> {result.ctasLevel}
+                </p>
+                <p>
+                  <span className="font-bold text-[#b21e2a]">Description:</span> {result.description}
+                </p>
+                <p>
+                  <span className="font-bold text-[#b21e2a]">Justification:</span> {result.justification}
+                </p>
+                <p>
+                  <span className="font-bold text-[#b21e2a]">Life-saving Intervention Required:</span>{' '}
+                  {result.interventionRequired}
+                </p>
               </div>
             )
           ) : (
             <p className="text-gray-600 text-base">
-              Fill the form and press <span className="font-semibold text-[#d4a14a]">"Assess Patient"</span> to see results here.
+              Fill the form and press{' '}
+              <span className="font-semibold text-[#d4a14a]">&quot;Assess Patient&quot;</span> to see results here.
             </p>
           )}
         </div>
